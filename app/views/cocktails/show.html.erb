@@ -1,9 +1,15 @@
-<%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
-<h3><%= @cocktail.name %></h3>
-<ul>
-  <% @doses.each do |dose| %>
-    <li><%= dose.description %> <%= Ingredient.find(dose.ingredient_id).name %></li>
-    <%= link_to "delete", cocktail_dose_path(dose.cocktail, dose), method: "delete", data: {confirm: "Are you sure"} %>
-  <% end %>
-</ul>
-<%= link_to 'Add a dose', new_cocktail_dose_path(@cocktail.id) %>
+<div class="banner banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path @cocktail.photo %>);">
+  <div class="banner-content">
+    <h1><%= @cocktail.name %></h1>
+  </div>
+</div>
+<div class="container">
+  <h3>Ingredients</h3>
+  <ul class="">
+    <% @doses.each do |dose| %>
+      <li class=""><%= dose.description %> <%= Ingredient.find(dose.ingredient_id).name %>
+      <%= link_to "delete", cocktail_dose_path(dose.cocktail, dose), method: "delete", data: {confirm: "Are you sure"} %></li>
+    <% end %>
+    <li><%= link_to 'Add a dose', new_cocktail_dose_path(@cocktail.id), class: "btn btn-link add-dose" %></li>
+  </ul>
+</div>
